@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :v
+
+Vagrant.configure("2") do |config|
+  config.vm.define "kali", primary: true do |kali|
+    kali.vm.box = "kalilinux/rolling"
+    kali.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+    kali.vm.provider "virtualbox" do |vbox|
+      vbox.gui = false
+      vbox.memory = 1024
+    end
+    kali.vm.provision "shell", inline: <<-SHELL
+      sudo rm /etc/motd
+      sudo rm /etc/update-motd.d/*
+    SHELL
+  end
+end
