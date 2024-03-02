@@ -4,6 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.define "kali", primary: true do |kali|
     kali.vm.box = "kalilinux/rolling"
+    config.vm.box_version = "2024.1.0"
     kali.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
     kali.vm.provider "virtualbox" do |vbox|
       vbox.gui = false
